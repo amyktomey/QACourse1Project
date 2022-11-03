@@ -15,11 +15,11 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleParameterlessConstructorTest()
         {
             //arrange
-            throw new NotImplementedException();
+             vehicle vehicle = new vehicle(4, 10, "Ford", "Junker", 10 );
             //act
 
             //assert
-
+           Vehicle = vehicle;
         }
 
         //Verify the parameterized constructor successfully creates a new
@@ -79,15 +79,22 @@ namespace CodeLouisvilleUnitTestProjectTests
         //property returns the correct percentage when the gas level is
         //at 0%, 25%, 50%, 75%, and 100%.
         [Theory]
-        [InlineData("MysteryParamValue")]
-        public void GasLevelPercentageIsCorrectForAmountOfGas(params object[] yourParamsHere)
+        [InlineData("0%", 0)]
+        [InlineData("25%", 2.5)]
+        [InlineData("50%", 5)]
+        [InlineData("75%", 7.5)]
+        [InlineData("100%", 10)]
+
+        public void GasLevelPercentageIsCorrectForAmountOfGas(string percent, int gasToAdd)
         {
             //arrange
-            throw new NotImplementedException();
+           vehicle vehicle = new vehicle(4, 10, "Ford", "Junker", 20);
+
             //act
+            vehicle AddGas(gasToAdd);
 
             //assert
-
+            vehicle.GasLevel.Should().Be(percent);
         }
 
         /*
