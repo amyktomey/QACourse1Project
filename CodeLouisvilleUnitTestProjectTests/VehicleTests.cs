@@ -15,7 +15,7 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleParameterlessConstructorTest()
         {
             //arrange
-             vehicle vehicle = new vehicle(4, 10, "Ford", "Junker", 10 );
+             vehicle vehicle = new vehicle(0,0, "0", "0", 0 );
             //act
 
             //assert
@@ -29,11 +29,11 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleConstructorTest()
         {
             //arrange
-            throw new NotImplementedException();
+             vehicle vehicle = new vehicle(4, 10, "Ford", "Junker", 20 );
             //act
 
             //assert
-
+            Vehicle = vehicle;
         }
 
         //Verify that the parameterless AddGas method fills the gas tank
