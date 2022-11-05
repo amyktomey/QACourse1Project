@@ -15,7 +15,7 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleParameterlessConstructorTest()
         {
             //arrange
-           var sut  Vehicle = new vehicle(0,0, "0", "0", 0 );
+           var sut Vehicle = new vehicle(0,0, "", "", 0 );
             //act
 
             //assert
@@ -29,11 +29,11 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleConstructorTest()
         {
             //arrange
-             vehicle vehicle = new vehicle(4, 10, "Ford", "Junker", 20 );
+             vehicle Vehicle = new vehicle(4, 10, "Ford", "Junker", 20 );
             //act
 
             //assert
-           sut.vehicle.Should().Be(vehicle);
+           sut.Vehicle.Should().Be(vehicle);
         }
 
         //Verify that the parameterless AddGas method fills the gas tank
@@ -42,24 +42,25 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void AddGasParameterlessFillsGasToMax()
         {
             //arrange
-            throw new NotImplementedException();
+             GasTankCapacity = 20;
             //act
 
             //assert
-
+            sut vehicle. _gasRemaining.Should().Be(GasTankCapacity);
         }
 
         //Verify that the AddGas method with a parameter adds the
         //supplied amount of gas to the gas tank.
         [Fact]
-        public void AddGasWithParameterAddsSuppliedAmountOfGas()
+        public void AddGasWithParameterAddsSuppliedAmountOfGas(float amount)
         {
             //arrange
-            throw new NotImplementedException();
+                amount = 5;
+                _gasRemaining = 8;     
             //act
-
+              sut _gasRemaining =  _gasRemaining + amount;
             //assert
-
+            sut.vehicle._gasRemaining.Should().Be(  _gasRemaining);
         }
 
         //Verify that the AddGas method with a parameter will throw
