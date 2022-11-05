@@ -15,11 +15,11 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleParameterlessConstructorTest()
         {
             //arrange
-             vehicle vehicle = new vehicle(0,0, "0", "0", 0 );
+           var sut  Vehicle = new vehicle(0,0, "0", "0", 0 );
             //act
 
             //assert
-           Vehicle = vehicle;
+          sut.Vehicle.Should().Be(vehicle);
         }
 
         //Verify the parameterized constructor successfully creates a new
@@ -33,7 +33,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             //act
 
             //assert
-            Vehicle = vehicle;
+           sut.vehicle.Should().Be(vehicle);
         }
 
         //Verify that the parameterless AddGas method fills the gas tank
@@ -91,7 +91,7 @@ namespace CodeLouisvilleUnitTestProjectTests
            vehicle vehicle = new vehicle(4, 10, "Ford", "Junker", 20);
 
             //act
-            vehicle AddGas(gasToAdd);
+            vehicle.AddGas(gasToAdd);
 
             //assert
             vehicle.GasLevel.Should().Be(percent);
