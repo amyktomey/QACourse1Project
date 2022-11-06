@@ -29,7 +29,7 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleConstructorTest()
         {
             //arrange
-             vehicle Vehicle = new vehicle(4, 10, "Ford", "Junker", 20 );
+             var Vehicle = new vehicle(4, 10, "Ford", "Junker", 20 );
             //act
 
             //assert
@@ -46,7 +46,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             //act
 
             //assert
-            sut vehicle. _gasRemaining.Should().Be(GasTankCapacity);
+            sut.vehicle._gasRemaining.Should().Be(GasTankCapacity);
         }
 
         //Verify that the AddGas method with a parameter adds the
@@ -58,9 +58,9 @@ namespace CodeLouisvilleUnitTestProjectTests
                 amount = 5;
                 _gasRemaining = 8;     
             //act
-              sut _gasRemaining =  _gasRemaining + amount;
+              sut NewTotal =  _gasRemaining + amount;
             //assert
-            sut.vehicle._gasRemaining.Should().Be(  _gasRemaining);
+            sut.vehicle._gasRemaining.Should().Be(NewTotal);
         }
 
         //Verify that the AddGas method with a parameter will throw
@@ -69,11 +69,15 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void AddingTooMuchGasThrowsGasOverflowException()
         {
             //arrange
-            throw new NotImplementedException();
+            GasTankCapacity = 20;
+            amount = 12; 
+            _gasRemaining = 10;
+            NewTotal = amount  + _gasRemaining;          ;
             //act
-
+            if (NewTotal > GasTankCapacity)
+                throw GasOverfillException(amount, GasTankCapacity);
             //assert
-
+            sut.NewTotal.Should().Be(GasOverfillException, "becauise the tank only holds 20");
         }
 
         //Using a Theory (or data-driven test), verify that the GasLevel
