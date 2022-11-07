@@ -69,7 +69,7 @@
             if (MilesRemaining == 0)
             {
                 statusString = "Cannot drive, out of gas.";
-            }
+             }
             else if (_hasFlatTire)
             {
                 statusString = "Cannot drive due to flat tire.";

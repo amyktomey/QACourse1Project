@@ -11,12 +11,12 @@ namespace CodeLouisvilleUnitTestProjectTests
         //Verify the parameterless constructor successfully creates a new
         //object of type Vehicle, and instantiates all public properties
         //to their default values.
-        [Fact]
+       [Fact]
         public void VehicleParameterlessConstructorTest()
-        {
-            //arrange
-           var sut Vehicle = new vehicle(0,0, "", "", 0 );
-            //act
+       {
+           //arrange
+          var sut Vehicle = new vehicle(0,0, "", "", 0);
+          //act
 
             //assert
           sut.Vehicle.Should().Be(vehicle);
@@ -124,8 +124,33 @@ namespace CodeLouisvilleUnitTestProjectTests
          *      is correct, and that the total mileage on the vehicle is 
          *      correct. Verify that the status reports the car is out of gas.
         */
+        [Fact]
+        public void Drive(double miles)
+        {
+             //arrange
+             /
+                _gasRemaining = 0;
+
+             //act     
+             if(MilesRemaining == 0)
+                  return string  “Cannot drive, out of gas”;
+            //assert
+           Vehicle.ableToDrive.Should().Be( “Cannot drive, out of gas, because the car is out of gas”);
+        }
+    [Fact]
+        public void Drive(_hasFlatTire)
+        {
+             //arrange    
+                _gasRemaining = 0;
+
+             //act     
+             if(_gasRemaining == 0)
+                  return string  “Cannot drive, out of gas”;
+            //assert
+           Vehicle.ableToDrive.Should().Be( “Cannot drive, out of gas", "because the car is out of gas”);
+        }
+
         [Theory]
-        [InlineData(0, 0)]
         [InlineData(10, .5)]
         [InlineData(100, 5)]
         [InlineData(200, 10)]
@@ -135,11 +160,11 @@ namespace CodeLouisvilleUnitTestProjectTests
             int GasTankCapacity = 10;
             int MilesPerGallon = 20;
             int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
-            int _gasRemaining = GasTankCapacity - gasUsed;
+           double _gasRemaining = GasTankCapacity - gasUsed;
             int MilesRemaining = _gasRemaining/ MilesPerGallon;
             
             //act
-             vehicle.Drive(ableToDrive);        
+            vehicle.Drive(ableToDrive);        
 
             //assert
 
