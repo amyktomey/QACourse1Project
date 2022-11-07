@@ -69,15 +69,15 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void AddingTooMuchGasThrowsGasOverflowException()
         {
             //arrange
-            GasTankCapacity = 20;
+            GasTankCapacity = 10;
             amount = 12; 
-            _gasRemaining = 10;
-            NewTotal = amount  + _gasRemaining;          ;
+            _gasRemaining = 5;
+            NewTotal = amount  + _gasRemaining;
             //act
             if (NewTotal > GasTankCapacity)
                 throw GasOverfillException(amount, GasTankCapacity);
             //assert
-            sut.NewTotal.Should().Be(GasOverfillException, "becauise the tank only holds 20");
+            sut.NewTotal.Should().Be(GasOverfillException, "becauise the tank only holds 10");
         }
 
         //Using a Theory (or data-driven test), verify that the GasLevel
@@ -125,15 +125,25 @@ namespace CodeLouisvilleUnitTestProjectTests
          *      correct. Verify that the status reports the car is out of gas.
         */
         [Theory]
-        [InlineData("MysteryParamValue")]
-        public void DriveNegativeTests(params object[] yourParamsHere)
+        [InlineData(0, 0)]
+        [InlineData(10, .5)]
+        [InlineData(100, 5)]
+        [InlineData(200, 10)]
+        public void DriveNegativeTests(int miles, double gasUsed)
         {
             //arrange
-            throw new NotImplementedException();
+            int GasTankCapacity = 10;
+            int MilesPerGallon = 20;
+            int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
+            int _gasRemaining = GasTankCapacity - gasUsed;
+            int MilesRemaining = _gasRemaining/ MilesPerGallon;
+            
             //act
+             vehicle.Drive(ableToDrive);        
 
             //assert
 
+            vehicle.ableToDrive.Should().Be(miles, gasUsed, _gasRemaining, MilesRemaining, TotalMilesPerTank );
         }
 
         [Theory]
