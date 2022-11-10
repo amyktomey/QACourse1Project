@@ -1,25 +1,28 @@
 using CodeLouisvilleUnitTestProject;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using System.Security.Cryptography.X509Certificates;
 using Xunit.Abstractions;
 
 namespace CodeLouisvilleUnitTestProjectTests
 {
     public class VehicleTests
     {
+        private object _gasRemaining;
+        public double GasTankCapacity;
 
         //Verify the parameterless constructor successfully creates a new
         //object of type Vehicle, and instantiates all public properties
         //to their default values.
-       [Fact]
+        [Fact]
         public void VehicleParameterlessConstructorTest()
        {
            //arrange
-          var sut Vehicle = new vehicle(0,0, "", "", 0);
-          //act
+          var Vehicle = new Vehicle(0,0, "", "", 0);
+            //act
 
             //assert
-          sut.Vehicle.Should().Be(vehicle);
+           Vehicle.Should( ).Be(Vehicle);
         }
 
         //Verify the parameterized constructor successfully creates a new
@@ -29,38 +32,40 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleConstructorTest()
         {
             //arrange
-             var Vehicle = new vehicle(4, 10, "Ford", "Junker", 20 );
+            var Vehicle = new Vehicle(4, 10, "Ford", "F150", 20);      
             //act
 
             //assert
-           sut.Vehicle.Should().Be(vehicle);
+           Vehicle.Should().Be(Vehicle);
         }
 
         //Verify that the parameterless AddGas method fills the gas tank
         //to 100% of its capacity
         [Fact]
-        public void AddGasParameterlessFillsGasToMax()
+        public void AddGasParameterlessFillsGasToMax( )
         {
             //arrange
-             GasTankCapacity = 20;
+            _gasRemaining = GasTankCapacity;
             //act
 
             //assert
-            sut.vehicle._gasRemaining.Should().Be(GasTankCapacity);
+            GasTankCapacity.Should().Be((double)_gasRemaining);
+            }
         }
 
         //Verify that the AddGas method with a parameter adds the
         //supplied amount of gas to the gas tank.
         [Fact]
-        public void AddGasWithParameterAddsSuppliedAmountOfGas(float amount)
-        {
-            //arrange
-                amount = 5;
-                _gasRemaining = 8;     
+        public void AddGasWithParameterAddsSuppliedAmountOfGas()
+    {
+         //arrange
+            double amount = 5;
+             double GasTankCapacity = 0;
+            double _gasRemaining =  GasTankCapacity - amount; ;     
             //act
-              sut NewTotal =  _gasRemaining + amount;
+             double NewTotal =  _gasRemaining + amount;
             //assert
-            sut.vehicle._gasRemaining.Should().Be(NewTotal);
+            Vehicle.GasTankCapacity.Should().Be(NewTotal);
         }
 
         //Verify that the AddGas method with a parameter will throw
@@ -128,26 +133,25 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void Drive(double miles)
         {
              //arrange
-             /
-                _gasRemaining = 0;
-
+              miles = 0;
+             statusString = "Cannot drive, out of gas.";
              //act     
              if(MilesRemaining == 0)
-                  return string  “Cannot drive, out of gas”;
+                  return "Cannot drive, out of gas.";
             //assert
-           Vehicle.ableToDrive.Should().Be( “Cannot drive, out of gas, because the car is out of gas”);
+           Vehicle.ableToDrive.Should().Be(statusString, "becausethe car is out of gas");
         }
     [Fact]
-        public void Drive(_hasFlatTire)
+        public void Drive(bool FlatTire)
         {
              //arrange    
-                _gasRemaining = 0;
-
+              FlatTire =true;
+              statusString = "Cannot drive due to flat tire.";
              //act     
-             if(_gasRemaining == 0)
-                  return string  “Cannot drive, out of gas”;
+             if(FlatTire = true)
+                return "Cannot drive due to flat tire.";
             //assert
-           Vehicle.ableToDrive.Should().Be( “Cannot drive, out of gas", "because the car is out of gas”);
+          Vehicle.ableToDrive.Should().Be(statusString, "because a tire is flat");
         }
 
         [Theory]
