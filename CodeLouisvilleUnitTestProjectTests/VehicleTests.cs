@@ -8,8 +8,9 @@ namespace CodeLouisvilleUnitTestProjectTests
 {
     public class VehicleTests
     {
-        private object _gasRemaining;
-        public double GasTankCapacity;
+       public object GasRemaining;
+       public double GasTankCapacity;
+        private string statusString;
 
         //Verify the parameterless constructor successfully creates a new
         //object of type Vehicle, and instantiates all public properties
@@ -17,12 +18,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         [Fact]
         public void VehicleParameterlessConstructorTest()
        {
-           //arrange
-          var Vehicle = new Vehicle(0,0, "", "", 0);
-            //act
+            //arrange
+            Vehicle vehicle = new Vehicle(0, 0, "", "", 0);
+            Vehicle Vehicle = vehicle;
+            //  act
 
             //assert
-           Vehicle.Should( ).Be(Vehicle);
+           Vehicle.Should().Be(Vehicle);
         }
 
         //Verify the parameterized constructor successfully creates a new
@@ -32,7 +34,8 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleConstructorTest()
         {
             //arrange
-            var Vehicle = new Vehicle(4, 10, "Ford", "F150", 20);      
+            Vehicle vehicle = new Vehicle(4, 10, "Ford", "F150", 20);
+            var Vehicle = vehicle;
             //act
 
             //assert
@@ -45,27 +48,24 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void AddGasParameterlessFillsGasToMax( )
         {
             //arrange
-            _gasRemaining = GasTankCapacity;
+            GasRemaining = GasTankCapacity;
             //act
 
             //assert
-            GasTankCapacity.Should().Be((double)_gasRemaining);
-            }
+            GasTankCapacity.Should().Be((double)GasRemaining);
         }
-
         //Verify that the AddGas method with a parameter adds the
         //supplied amount of gas to the gas tank.
         [Fact]
         public void AddGasWithParameterAddsSuppliedAmountOfGas()
-    {
+        {
          //arrange
             double amount = 5;
-             double GasTankCapacity = 0;
-            double _gasRemaining =  GasTankCapacity - amount; ;     
-            //act
-             double NewTotal =  _gasRemaining + amount;
-            //assert
-            Vehicle.GasTankCapacity.Should().Be(NewTotal);
+            double GasTankCapacity = 0;
+            double GasRemaining =  GasTankCapacity - amount; ;
+        //act
+        double NewTotal = GasRemaining + amount;
+        GasTankCapacity.Should().Be(NewTotal);
         }
 
         //Verify that the AddGas method with a parameter will throw
@@ -74,15 +74,15 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void AddingTooMuchGasThrowsGasOverflowException()
         {
             //arrange
-            GasTankCapacity = 10;
-            amount = 12; 
-            _gasRemaining = 5;
-            NewTotal = amount  + _gasRemaining;
+            double GasTankCapacity = 10;
+            double amount = 12;
+            double GasRemaining = 5;
+            double NewTotal = amount + GasRemaining;
             //act
             if (NewTotal > GasTankCapacity)
                 throw GasOverfillException(amount, GasTankCapacity);
             //assert
-            sut.NewTotal.Should().Be(GasOverfillException, "becauise the tank only holds 10");
+            NewTotal.Should().Be(GasOverfillException, "becauise the tank only holds 10");
         }
 
         //Using a Theory (or data-driven test), verify that the GasLevel
@@ -98,7 +98,7 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void GasLevelPercentageIsCorrectForAmountOfGas(string percent, int gasToAdd)
         {
             //arrange
-           vehicle vehicle = new vehicle(4, 10, "Ford", "Junker", 20);
+           Vehicle vehicle = new Vehicle(4, 10, "Ford", "Junker", 20);
 
             //act
             vehicle.AddGas(gasToAdd);
@@ -130,10 +130,10 @@ namespace CodeLouisvilleUnitTestProjectTests
          *      correct. Verify that the status reports the car is out of gas.
         */
         [Fact]
-        public void Drive(double miles)
+        public void Drivet()
         {
-             //arrange
-              miles = 0;
+            //arrange
+            miles = 0;
              statusString = "Cannot drive, out of gas.";
              //act     
              if(MilesRemaining == 0)
@@ -141,17 +141,15 @@ namespace CodeLouisvilleUnitTestProjectTests
             //assert
            Vehicle.ableToDrive.Should().Be(statusString, "becausethe car is out of gas");
         }
-    [Fact]
-        public void Drive(bool FlatTire)
+        [Fact]
+        public string Drive()
         {
-             //arrange    
-              FlatTire =true;
-              statusString = "Cannot drive due to flat tire.";
-             //act     
-             if(FlatTire = true)
+            statusString = "Cannot drive due to flat tire.";
+            //act     
+            if (true)
                 return "Cannot drive due to flat tire.";
             //assert
-          Vehicle.ableToDrive.Should().Be(statusString, "because a tire is flat");
+            Vehicle.ableToDrive.Should().Be(statusString, "because a tire is flat");
         }
 
         [Theory]
@@ -164,15 +162,15 @@ namespace CodeLouisvilleUnitTestProjectTests
             int GasTankCapacity = 10;
             int MilesPerGallon = 20;
             int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
-           double _gasRemaining = GasTankCapacity - gasUsed;
-            int MilesRemaining = _gasRemaining/ MilesPerGallon;
-            
+            double GasRemaining = GasTankCapacity - gasUsed;
+            int MilesRemaining = (int)(GasRemaining / MilesPerGallon);
+
             //act
-            vehicle.Drive(ableToDrive);        
+           // Vehicle.Drive(ableToDrive);
 
             //assert
 
-            vehicle.ableToDrive.Should().Be(miles, gasUsed, _gasRemaining, MilesRemaining, TotalMilesPerTank );
+            Vehicle.ableToDrive.Should().Be(miles, gasUsed, GasRemaining, MilesRemaining, TotalMilesPerTank );
         }
 
         [Theory]

@@ -8,15 +8,17 @@
         public double MilesPerGallon { get; set; }
         public double GasTankCapacity { get; init; }
         public int NumberOfTires { get; init; }
-        public string GasLevel => $"{_gasRemaining / GasTankCapacity * 100}%";
-        public double MilesRemaining => _gasRemaining * MilesPerGallon;
+        public string GasLevel => $"{GasRemaining / GasTankCapacity * 100}%";
+        public double MilesRemaining => GasRemaining * MilesPerGallon;
         public double Mileage => _mileage;
+        public double GasRemaining;
         #endregion
 
         #region Private Fields
-        private double _gasRemaining;
+     
         private double _mileage;
         private bool _hasFlatTire;
+        public static object ableToDrive;
         #endregion
 
         #region Private Properties
@@ -42,8 +44,8 @@
         /// <returns></returns>
         public double AddGas()
         {
-            _gasRemaining = GasTankCapacity;
-            return _gasRemaining;
+            GasRemaining = GasTankCapacity;
+            return GasRemaining;
         }
 
         /// <summary>
@@ -54,12 +56,12 @@
         /// <exception cref="GasOverfillException"> Thrown if the amount of gas added exceeds the capacity of the tank</exception>
         public double AddGas(float amount)
         {
-            double newTotal = _gasRemaining + amount;
+            double newTotal = GasRemaining + amount;
             if (newTotal > GasTankCapacity)
                 throw new GasOverfillException(amount, GasTankCapacity);
             else 
-                _gasRemaining = newTotal;
-            return _gasRemaining;
+                GasRemaining = newTotal;
+            return GasRemaining;
         }
 
         public string Drive(double miles)
@@ -80,14 +82,14 @@
                 if (MilesRemaining > miles)
                 {
                     double gasUsed = miles / MilesPerGallon;
-                    _gasRemaining -= gasUsed;
+                    GasRemaining -= gasUsed;
                     _mileage += miles;
                     statusString = $"Drove {Math.Round(miles, 2)} miles using {Math.Round(gasUsed, 2)} gallons of gas.";
                 }
                 else
                 {
                     double distanceTraveled = MilesRemaining;
-                    _gasRemaining = 0;
+                    GasRemaining = 0;
                     _mileage += distanceTraveled;
                     statusString = $"Drove {Math.Round(distanceTraveled, 2)} miles, then ran out of gas.";
                 }
