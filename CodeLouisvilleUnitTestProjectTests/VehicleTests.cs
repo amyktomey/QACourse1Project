@@ -27,7 +27,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             //  act
 
             //assert
-            Vehicle.Should().Be(Vehicle);
+            vehicle.Should().BeOfType<Vehicle>();
         }
 
         //Verify the parameterized constructor successfully creates a new
@@ -42,7 +42,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             //act
 
             //assert
-            Vehicle.Should().Be(Vehicle);
+            vehicle.Should().BeOfType<Vehicle>();
         }
 
         //Verify that the parameterless AddGas method fills the gas tank

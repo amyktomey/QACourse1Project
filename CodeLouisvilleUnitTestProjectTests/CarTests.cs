@@ -21,6 +21,17 @@ namespace CodeLouisvilleUnitTestProjectTests
             vehicle.Should().BeOfType<Vehicle>();
         }
 
+        [Fact]
+        public void CarConstructorTest()
+        {
+            //arrange
+            Vehicle vehicle = new(4, 10, "Ford", "Junker", 20);
+            //  act
+
+            //assert
+            vehicle.NumberOfTires.Should().Be<Vehicle>(4);
+        }
+
 
 
     }

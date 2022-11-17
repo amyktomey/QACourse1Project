@@ -14,7 +14,7 @@ namespace CodeLouisvilleUnitTestProject
 
         public Car(double gasTankCapacity, string make, string model, double milesPerGallon)
         {
-
+            Vehicle vehicle = new Vehicle(10, "Forrd", "Junker", 20);
         }
 
         private HttpClient _client = new HttpClient()
@@ -30,7 +30,7 @@ namespace CodeLouisvilleUnitTestProject
         //    var response = await _client.GetAsync(urlSiffix);
         //    var rawJaon = await response.Content.ReadAsStringAsync();
         //    var data = JsonSerializer.Deserialize<IsValidModelForMakeAsync>(rawJaon);
-        //   // return data.result.Any(r => r.Model_Name == Model);
+        //     return data.result.Any(r => r.Model_Name == Model);
         //}
 
         public async Task<bool> WasModelMadeInYearAsync(int year)
