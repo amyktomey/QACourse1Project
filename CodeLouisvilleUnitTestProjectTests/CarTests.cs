@@ -8,7 +8,7 @@ using FluentAssertions;
 
 namespace CodeLouisvilleUnitTestProjectTests
 {
-    public class CarTests;
+    public class CarTests
     {
         [Fact]
         public void CarParameterlessConstructorTest()
@@ -21,5 +21,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             vehicle.Should().BeOfType<Vehicle>();
         }
 
-    )
+
+
+    }
 }

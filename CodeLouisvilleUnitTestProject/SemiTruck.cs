@@ -2,18 +2,17 @@
 {
     public class SemiTruck : Vehicle
     {
-        private const int NumOfTires = 18;
+    //    private const int NumOfTires = 18;
 
         public List<CargoItem> Cargo { get; private set; }
-        public new int NumberOfTires { get; init; }
 
         /// <summary>
         /// Creates a new SemiTruck that always has 18 Tires
         /// </summary>
-        public SemiTruck(int numberOfTires)
-        {
-            NumberOfTires = NumOfTires;
-        }
+        //public SemiTruck(int numberOfTires)
+       // {
+       //     NumberOfTires = NumOfTires;
+      //  }
 
         /// <summary>
         /// Adds the passed CargoItem to the Cargo
