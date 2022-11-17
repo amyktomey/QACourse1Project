@@ -8,23 +8,26 @@ namespace CodeLouisvilleUnitTestProjectTests
 {
     public class VehicleTests
     {
-       public object GasRemaining;
-       public double GasTankCapacity;
+        public object GasRemaining;
+        public double GasTankCapacity;
+        private int miles;
         private string statusString;
+        private int MilesRemaining;
+        public double gasToAdd;
 
         //Verify the parameterless constructor successfully creates a new
         //object of type Vehicle, and instantiates all public properties
         //to their default values.
         [Fact]
         public void VehicleParameterlessConstructorTest()
-       {
+        {
             //arrange
-            Vehicle vehicle = new Vehicle(0, 0, "", "", 0);
+            Vehicle vehicle = new(0, 0, "", "", 0);
             Vehicle Vehicle = vehicle;
             //  act
 
             //assert
-           Vehicle.Should().Be(Vehicle);
+            Vehicle.Should().Be(Vehicle);
         }
 
         //Verify the parameterized constructor successfully creates a new
@@ -34,18 +37,18 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void VehicleConstructorTest()
         {
             //arrange
-            Vehicle vehicle = new Vehicle(4, 10, "Ford", "F150", 20);
+            Vehicle vehicle = new(4, 10, "Ford", "Junker", 20);
             var Vehicle = vehicle;
             //act
 
             //assert
-           Vehicle.Should().Be(Vehicle);
+            Vehicle.Should().Be(Vehicle);
         }
 
         //Verify that the parameterless AddGas method fills the gas tank
         //to 100% of its capacity
         [Fact]
-        public void AddGasParameterlessFillsGasToMax( )
+        public void AddGasParameterlessFillsGasToMax()
         {
             //arrange
             GasRemaining = GasTankCapacity;
@@ -59,13 +62,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         [Fact]
         public void AddGasWithParameterAddsSuppliedAmountOfGas()
         {
-         //arrange
+            //arrange
             double amount = 5;
             double GasTankCapacity = 0;
-            double GasRemaining =  GasTankCapacity - amount; ;
-        //act
-        double NewTotal = GasRemaining + amount;
-        GasTankCapacity.Should().Be(NewTotal);
+            double GasRemaining = GasTankCapacity - amount; ;
+            //act
+            double NewTotal = GasRemaining + amount;
+            GasTankCapacity.Should().Be(NewTotal);
         }
 
         //Verify that the AddGas method with a parameter will throw
@@ -74,16 +77,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void AddingTooMuchGasThrowsGasOverflowException()
         {
             //arrange
-            double GasTankCapacity = 10;
-            double amount = 12;
-            double GasRemaining = 5;
-            double NewTotal = amount + GasRemaining;
+            Vehicle Junker = new(4, 10, "Ford", "Junker", 20);
             //act
-            if (NewTotal > GasTankCapacity)
-                throw GasOverfillException(amount, GasTankCapacity);
+
+            Action testAddGas = () => Junker.AddGas(15);
             //assert
-            NewTotal.Should().Be(GasOverfillException, "becauise the tank only holds 10");
-        }
+            testAddGas.Should().Throw<GasOverfillException>();
+            }
 
         //Using a Theory (or data-driven test), verify that the GasLevel
         //property returns the correct percentage when the gas level is
@@ -95,13 +95,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         [InlineData("75%", 7.5)]
         [InlineData("100%", 10)]
 
-        public void GasLevelPercentageIsCorrectForAmountOfGas(string percent, int gasToAdd)
+        public void GasLevelPercentageIsCorrectForAmountOfGas(string percent, double gasToAdd)
         {
             //arrange
-           Vehicle vehicle = new Vehicle(4, 10, "Ford", "Junker", 20);
+            Vehicle vehicle = new(4, 10, "Ford", "Junker", 20);
 
             //act
-            vehicle.AddGas(gasToAdd);
+            vehicle.AddGas((float)gasToAdd);
 
             //assert
             vehicle.GasLevel.Should().Be(percent);
@@ -128,102 +128,99 @@ namespace CodeLouisvilleUnitTestProjectTests
          *      was traveled, that GasLevel is correct, that MilesRemaining
          *      is correct, and that the total mileage on the vehicle is 
          *      correct. Verify that the status reports the car is out of gas.
-        */
-        [Fact]
-        public void Drivet()
-        {
-            //arrange
-            miles = 0;
-             statusString = "Cannot drive, out of gas.";
-             //act     
-             if(MilesRemaining == 0)
-                  return "Cannot drive, out of gas.";
-            //assert
-           Vehicle.ableToDrive.Should().Be(statusString, "becausethe car is out of gas");
-        }
-        [Fact]
-        public string Drive()
-        {
-            statusString = "Cannot drive due to flat tire.";
-            //act     
-            if (true)
-                return "Cannot drive due to flat tire.";
-            //assert
-            Vehicle.ableToDrive.Should().Be(statusString, "because a tire is flat");
-        }
+       // */
+       // [Theory]
+       // [InlineData(200, false)]
+       // public void DriveNegativeTests(params object[] yourParamsHere)
+       // public void DriveNegativeTests(double MilesRemaining, bool ableToDrive)
+       // {
+       //     if (MilesRemaining == 0)
+       //     {
+       //        Action testAddGas.Should().Throw<gotFlat>();
+       //     }         
+       // }
 
-        [Theory]
-        [InlineData(10, .5)]
-        [InlineData(100, 5)]
-        [InlineData(200, 10)]
-        public void DriveNegativeTests(int miles, double gasUsed)
-        {
-            //arrange
-            int GasTankCapacity = 10;
-            int MilesPerGallon = 20;
-            int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
-            double GasRemaining = GasTankCapacity - gasUsed;
-            int MilesRemaining = (int)(GasRemaining / MilesPerGallon);
+       // [Theory]
+       //  [InlineData()]
+       // public void DriveNegativeTests(double milesToDrive, bool FlatTire)
+       // {
+       //     if (_hasFlatTire = true)
+       //     {
+       //     }
+       //}
 
-            //act
-           // Vehicle.Drive(ableToDrive);
+        //[Theory]
+        //[InlineData(10, .5)]
+        //[InlineData(100, 5)]
+        //[InlineData(200, 10)]
+        //public void DriveNegativeTests(int miles, double gasUsed)
+        //{
+        //    //arrange
+        //    int GasTankCapacity = 10;
+        //    int MilesPerGallon = 20;
+        //    int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
+        //    double GasRemaining = GasTankCapacity - gasUsed;
+    //    //    int MilesRemaining = (int)(GasRemaining / MilesPerGallon);
 
-            //assert
+    //    //act
+    //    // Vehicle.Drive(ableToDrive);
 
-            Vehicle.ableToDrive.Should().Be(miles, gasUsed, GasRemaining, MilesRemaining, TotalMilesPerTank );
-        }
+    //    //assert
 
-        [Theory]
-        [InlineData("MysteryParamValue")]
-        public void DrivePositiveTests(params object[] yourParamsHere)
-        {
-            //arrange
-            throw new NotImplementedException();
-            //act
+    //    // Vehicle.ableToDrive.Should().Be(miles, gasUsed, GasRemaining, MilesRemaining, TotalMilesPerTank );
+    //}
 
-            //assert
+    //[Theory]
+    //    [InlineData("MysteryParamValue")]
+    //    public void DrivePositiveTests(params object[] yourParamsHere)
+    //    {
+    //        //arrange
+    //        throw new NotImplementedException();
+    //        //act
 
-        }
+    //        //assert
 
-        //Verify that attempting to change a flat tire using
-        //ChangeTireAsync will throw a NoTireToChangeException
-        //if there is no flat tire.
-        [Fact]
-        public async Task ChangeTireWithoutFlatTest()
-        {
-            //arrange
-            throw new NotImplementedException();
-            //act
+    //    }
 
-            //assert
+    //    //Verify that attempting to change a flat tire using
+    //    //ChangeTireAsync will throw a NoTireToChangeException
+    //    //if there is no flat tire.
+    //    [Fact]
+    //    public async Task ChangeTireWithoutFlatTest()
+    //    {
+    //        //arrange
+    //        throw new NotImplementedException();
+    //        //act
 
-        }
+    //        //assert
 
-        //Verify that ChangeTireAsync can successfully
-        //be used to change a flat tire
-        [Fact]
-        public async Task ChangeTireSuccessfulTest()
-        {
-            //arrange
-            throw new NotImplementedException();
-            //act
+    //    }
 
-            //assert
+    //    //Verify that ChangeTireAsync can successfully
+    //    //be used to change a flat tire
+    //    [Fact]
+    //    public async Task ChangeTireSuccessfulTest()
+    //    {
+    //        //arrange
+    //        throw new NotImplementedException();
+    //        //act
 
-        }
+    //        //assert
 
-        //BONUS: Write a unit test that verifies that a flat
-        //tire will occur after a certain number of miles.
-        [Theory]
-        [InlineData("MysteryParamValue")]
-        public void GetFlatTireAfterCertainNumberOfMilesTest(params object[] yourParamsHere)
-        {
-            //arrange
-            throw new NotImplementedException();
-            //act
+    //    }
 
-            //assert
+    //    //BONUS: Write a unit test that verifies that a flat
+    //    //tire will occur after a certain number of miles.
+    //    [Theory]
+    //    [InlineData("MysteryParamValue")]
+    //    public void GetFlatTireAfterCertainNumberOfMilesTest(params object[] yourParamsHere)
+    //    {
+    //        //arrange
+    //        throw new NotImplementedException();
+    //        //act
 
-        }
+    //        //assert
+
+    //    }
     }
 }

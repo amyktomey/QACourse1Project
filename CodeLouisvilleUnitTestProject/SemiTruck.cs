@@ -2,26 +2,29 @@
 {
     public class SemiTruck : Vehicle
     {
+        private const int NumOfTires = 18;
+
         public List<CargoItem> Cargo { get; private set; }
+        public new int NumberOfTires { get; init; }
 
         /// <summary>
         /// Creates a new SemiTruck that always has 18 Tires
         /// </summary>
-        public SemiTruck()
+        public SemiTruck(int numberOfTires)
         {
-            //YOUR CODE HERE: 
-            throw new NotImplementedException();
+            NumberOfTires = NumOfTires;
         }
 
         /// <summary>
         /// Adds the passed CargoItem to the Cargo
         /// </summary>
         /// <param name="item">The CargoItem to add</param>
-        public void LoadCargo(CargoItem item)
-        {
-            //YOUR CODE HERE
-            throw new NotImplementedException();
-        }
+        //public void LoadCargo(CargoItem item)
+        //{
+        //    List<string> Cargo= new List<string>();
+        //    CargoItem.Add("item");
+
+        //}
             
         /// <summary>
         /// Attempts to remove the first item with the passed name from the Cargo and return it

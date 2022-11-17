@@ -15,10 +15,9 @@
         #endregion
 
         #region Private Fields
-     
+
         private double _mileage;
         private bool _hasFlatTire;
-        public static object ableToDrive;
         #endregion
 
         #region Private Properties
@@ -59,7 +58,7 @@
             double newTotal = GasRemaining + amount;
             if (newTotal > GasTankCapacity)
                 throw new GasOverfillException(amount, GasTankCapacity);
-            else 
+            else
                 GasRemaining = newTotal;
             return GasRemaining;
         }
@@ -71,7 +70,7 @@
             if (MilesRemaining == 0)
             {
                 statusString = "Cannot drive, out of gas.";
-             }
+            }
             else if (_hasFlatTire)
             {
                 statusString = "Cannot drive due to flat tire.";
@@ -95,10 +94,10 @@
                 }
             }
 
-            if(ableToDrive)
+            if (ableToDrive)
             {
                 bool gotFlat = GotFlatTire(miles);
-                if(gotFlat)
+                if (gotFlat)
                 {
                     _hasFlatTire = true;
                     statusString += " Oh no! Got a flat tire!";
