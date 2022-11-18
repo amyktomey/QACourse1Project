@@ -7,14 +7,15 @@ namespace CodeLouisvilleUnitTestProject
     {
 
         public int NumberOfPassengers { get; private set; }
+        public int ExcessPassengers { get; set; }
 
         public Car()
             : this(0, "", "", 0)
         { }
 
-        public Car(double gasTankCapacity, string make, string model, double milesPerGallon)
+        public Car(int numberOfTires, double gasTankCapacity, string make, string model, double milesPerGallon)
         {
-            Vehicle vehicle = new Vehicle(10, "Forrd", "Junker", 20);
+            Vehicle vehicle = new Vehicle(4,10, "Ford", "Junker", 20);
         }
 
         private HttpClient _client = new HttpClient()
