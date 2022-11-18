@@ -10,7 +10,8 @@
         public SemiTruck()
         {
             SemiTruck semiTruck = new SemiTruck();
-         //   NumberOfTires = 18;
+            Cargo = new List<CargoItem>();
+            //   NumberOfTires = 18;
         }
 
         /// <summary>
@@ -19,7 +20,7 @@
         /// <param name="item">The CargoItem to add</param>
         public void LoadCargo(CargoItem item)
         {
-            Cargo = new List<CargoItem>();
+  
           //  throw new NotImplementedException();
         }
             
@@ -40,7 +41,7 @@
         /// </summary>
         /// <param name="name">The name to match</param>
         /// <returns>A List of CargoItems with the exact name passed</returns>
-        public List<CargoItem> GetCargoItemsByName(string name)
+        public List<CargoItem> GetCargoItemsByName(string name) 
         {
             //YOUR CODE HERE
             throw new NotImplementedException();
