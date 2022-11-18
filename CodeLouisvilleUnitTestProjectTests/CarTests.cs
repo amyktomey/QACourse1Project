@@ -31,8 +31,44 @@ namespace CodeLouisvilleUnitTestProjectTests
             //assert
             vehicle.NumberOfTires.Should().Be<Vehicle>(4);
         }
+        [Theory]
+        [InlineData("Honda", "Civic")]
+        [InlineData("Honda", "Camry"]
 
+        IsValidModelForMakeAsyncTest(Make, Model)
+        {
 
+        }
 
+        [Fact]
+        WasModelMadeInYearAsyncNegativeTest()
+        {
+
+        }
+
+        [Theory]
+        [InlineData("Pants", "Jeans", 2022)]
+        [InlineData("Honda", "Camry", 2001)]
+        [InlineData("Subaru","WRX", 2020)]
+        [InlineData("Subaru", "WRX", 2000)]
+
+        WasModelMadeInYearAsyncPositiveTest()
+        {
+
+        }
+
+        [Fact]
+        AddPassengersTest:()
+      //  {  }
+
+        [Theory]
+        [InlineData( 5, 21, 3)]
+        [InlineData(5, 21,5)]
+        [InlineData(5, 21, 25)]
+
+        RemovePassengersTest:()
+        {
+
+        }
     }
 }

@@ -55,7 +55,9 @@ namespace CodeLouisvilleUnitTestProject
         {
             NumberOfPassengers = NumberOfPassengers - PassengersToRemove;
             if (NumberOfPassengers < 0)
-                NumberOfPassengers = 0;
+                ExcessPassengers = PassengersToRemove - NumberOfPassengers;
+                PassengersToRemove = PassengersToRemove - ExcessPassengers;
+
             MilesPerGallon = MilesPerGallon - (PassengersToRemove * .2);
         }
     }
