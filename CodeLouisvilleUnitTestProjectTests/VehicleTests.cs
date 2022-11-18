@@ -149,26 +149,26 @@ namespace CodeLouisvilleUnitTestProjectTests
        //     }
        //}
 
-        //[Theory]
-        //[InlineData(10, .5)]
-        //[InlineData(100, 5)]
-        //[InlineData(200, 10)]
-        //public void DriveNegativeTests(int miles, double gasUsed)
-        //{
-        //    //arrange
-        //    int GasTankCapacity = 10;
-        //    int MilesPerGallon = 20;
-        //    int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
-        //    double GasRemaining = GasTankCapacity - gasUsed;
-    //    //    int MilesRemaining = (int)(GasRemaining / MilesPerGallon);
+       /[Theory]
+       /[InlineData(10, .5)]
+       /[InlineData(100, 5)]
+       /[InlineData(200, 10)]
+       public void DriveNegativeTests(int miles, double gasUsed)
+       {
+          / //arrange
+            int GasTankCapacity = 10;
+            int MilesPerGallon = 20;
+            int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
+            double GasRemaining = GasTankCapacity - gasUsed;
+            int MilesRemaining = (int)(GasRemaining / MilesPerGallon);
 
     //    //act
-    //    // Vehicle.Drive(ableToDrive);
+          Vehicle.Drive(ableToDrive);
 
     //    //assert
 
-    //    // Vehicle.ableToDrive.Should().Be(miles, gasUsed, GasRemaining, MilesRemaining, TotalMilesPerTank );
-    //}
+          Vehicle.ableToDrive.Should().Be(miles, gasUsed, GasRemaining, MilesRemaining, TotalMilesPerTank );
+        }
 
     //[Theory]
     //    [InlineData("MysteryParamValue")]
@@ -193,13 +193,13 @@ namespace CodeLouisvilleUnitTestProjectTests
             //act
 
             //assert
-            Action act = () => vehicle.ChnageTireAsync();
+            Action act = () => Vehicle.ChnageTireAsync();
             act.Should().Throw<NoTireToChangeException>().WithMessage("No Flat tire to Change.");
         }
 
     //    //Verify that ChangeTireAsync can successfully
     //    //be used to change a flat tire
-    //    [Fact]
+      //  [Fact]
     //    public async Task ChangeTireSuccessfulTest()
     //    {
     //        //arrange
