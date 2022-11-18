@@ -149,13 +149,14 @@ namespace CodeLouisvilleUnitTestProjectTests
        //     }
        //}
 
-       /[Theory]
-       /[InlineData(10, .5)]
-       /[InlineData(100, 5)]
-       /[InlineData(200, 10)]
+       [Theory]
+       [InlineData(10, .5)]
+       [InlineData(100, 5)]
+       [InlineData(200, 10)]
        public void DriveNegativeTests(int miles, double gasUsed)
-       {
-          / //arrange
+        {
+            / //arrange
+            Vehicle vehicle = new(4, 10, "Ford", "Junker", 20);
             int GasTankCapacity = 10;
             int MilesPerGallon = 20;
             int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
@@ -163,7 +164,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             int MilesRemaining = (int)(GasRemaining / MilesPerGallon);
 
     //    //act
-          Vehicle.Drive(ableToDrive);
+          //Vehicle.Drive(ableToDrive);
 
     //    //assert
 
