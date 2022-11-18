@@ -10,7 +10,7 @@
         public SemiTruck()
         {
             SemiTruck semiTruck = new SemiTruck();
-            NumberOfTires = 18;
+         //   NumberOfTires = 18;
         }
 
         /// <summary>
@@ -19,8 +19,8 @@
         /// <param name="item">The CargoItem to add</param>
         public void LoadCargo(CargoItem item)
         {
-            //YOUR CODE HERE
-            throw new NotImplementedException();
+            Cargo = new List<CargoItem>();
+          //  throw new NotImplementedException();
         }
             
         /// <summary>

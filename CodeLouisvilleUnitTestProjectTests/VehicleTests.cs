@@ -186,15 +186,16 @@ namespace CodeLouisvilleUnitTestProjectTests
     //    //ChangeTireAsync will throw a NoTireToChangeException
     //    //if there is no flat tire.
     //    [Fact]
-    //    public async Task ChangeTireWithoutFlatTest()
-    //    {
-    //        //arrange
-    //        throw new NotImplementedException();
-    //        //act
+        public async Task ChangeTireWithoutFlatTest()
+        {
+            //arrange
+            Vehicle vehicle = new(4, 10, "", "", 20);
+            //act
 
-    //        //assert
-
-    //    }
+            //assert
+            Action act = () => vehicle.ChnageTireAsync();
+            act.Should().Throw<NoTireToChangeException>().WithMessage("No Flat tire to Change.");
+        }
 
     //    //Verify that ChangeTireAsync can successfully
     //    //be used to change a flat tire
