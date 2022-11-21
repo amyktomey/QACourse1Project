@@ -29,7 +29,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             //  act
 
             //assert
-            vehicle.NumberOfTires.Should().Be<Vehicle>(4);
+            vehicle.NumberOfTires.Should().Be(4);
         }
 
 //        [Theory]

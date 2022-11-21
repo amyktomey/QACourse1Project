@@ -12,6 +12,7 @@
         public double MilesRemaining => GasRemaining * MilesPerGallon;
         public double Mileage => _mileage;
         public double GasRemaining;
+        public bool HasFlatTire { get => _hasFlatTire; set { _hasFlatTire = value; } }
         #endregion
 
         #region Private Fields
@@ -106,7 +107,7 @@
             return statusString;
         }
 
-        protected async Task ChangeTireAsync()
+        public async Task ChangeTireAsync()
         {
             if (!_hasFlatTire)
                 throw new NoTireToChangeException();

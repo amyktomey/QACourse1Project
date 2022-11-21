@@ -16,13 +16,14 @@ namespace CodeLouisvilleUnitTestProject
         public Car(int numberOfTires, double gasTankCapacity, string make, string model, double milesPerGallon)
         {
             Vehicle vehicle = new Vehicle(4, 10, "Ford", "Junker", 20);
-        }
+            _client = new HttpClient()
+            {
+                BaseAddress = new Uri("https://vpic.nhtsa.dot.gov/api/")
+            };
+    }
 
         private HttpClient _client;
-         _client = new HttpClient()
-         {
-            BaseAddress = new Uri("https://vpic.nhtsa.dot.gov/api/");
-         }
+         
 
         public async Task<bool> IsValidModelForMakeAsyn(int year)
         {
@@ -31,8 +32,8 @@ namespace CodeLouisvilleUnitTestProject
             string urlSiffix = $"/vehicles/GetModelsForMake{make}/?format=json";
             var response = await _client.GetAsync(urlSiffix);
             var rawJson = await response.Content.ReadAsStringAsync();
-            var data = JsonSerializer.Deserialize<IsValidModelForMakeAsync>(rawJson);
-            if (model = true)
+            var data = JsonSerializer.Deserialize<IsValidModelForMakeModel>(rawJson);
+            if (data.Results.Any(item => item.Model_Name == model))
                 return true;
             else
                 return false;
@@ -47,7 +48,7 @@ namespace CodeLouisvilleUnitTestProject
             var response = await _client.GetAsync(urlSiffix);
             var rawJson = await response.Content.ReadAsStringAsync();
             var data = JsonSerializer.Deserialize<GetModelsForMakeYearResponseModel>(rawJson);
-            return data.Result.Any(r => r.Model_Name == Model);
+            return data.Results.Any(r => r.Model_Name == Model);
        }
 
         public void AddPassengers(int PassengersToAdd)

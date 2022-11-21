@@ -129,64 +129,64 @@ namespace CodeLouisvilleUnitTestProjectTests
          *      is correct, and that the total mileage on the vehicle is 
          *      correct. Verify that the status reports the car is out of gas.
        // */
-       // [Theory]
-       // [InlineData(200, false)]
-       // public void DriveNegativeTests(params object[] yourParamsHere)
-       // public void DriveNegativeTests(double MilesRemaining, bool ableToDrive)
-       // {
-       //     if (MilesRemaining == 0)
-       //     {
-       //        Action testAddGas.Should().Throw<gotFlat>();
-       //     }         
-       // }
+        // [Theory]
+        // [InlineData(200, false)]
+        // public void DriveNegativeTests(params object[] yourParamsHere)
+        // public void DriveNegativeTests(double MilesRemaining, bool ableToDrive)
+        // {
+        //     if (MilesRemaining == 0)
+        //     {
+        //        Action testAddGas.Should().Throw<gotFlat>();
+        //     }         
+        // }
 
-       // [Theory]
-       //  [InlineData()]
-       // public void DriveNegativeTests(double milesToDrive, bool FlatTire)
-       // {
-       //     if (_hasFlatTire = true)
-       //     {
-       //     }
-       //}
+        // [Theory]
+        //  [InlineData()]
+        // public void DriveNegativeTests(double milesToDrive, bool FlatTire)
+        // {
+        //     if (_hasFlatTire = true)
+        //     {
+        //     }
+        //}
 
-       [Theory]
-       [InlineData(10, .5)]
-       [InlineData(100, 5)]
-       [InlineData(200, 10)]
-       public void DriveNegativeTests(int miles, double gasUsed)
+        [Theory]
+        [InlineData(0, false, 10, "Cannot drive, out of gas.")]
+        [InlineData(20, true, 10, "Cannot drive due to flat tire.")]
+        public void DriveNegativeTests(int gasToAdd, bool isFlat, double milesToDrive, string expectedStatus)
         {
-            / //arrange
-            Vehicle vehicle = new(4, 10, "Ford", "Junker", 20);
-            int GasTankCapacity = 10;
-            int MilesPerGallon = 20;
-            int TotalMilesPerTank = MilesPerGallon * GasTankCapacity;
-            double GasRemaining = GasTankCapacity - gasUsed;
-            int MilesRemaining = (int)(GasRemaining / MilesPerGallon);
+            //arrange
+            Vehicle vehicle = new()
+            {
+                MilesPerGallon = 30,
+                NumberOfTires = 4,
+                GasTankCapacity = 30
+            };
+            vehicle.HasFlatTire = isFlat;
+            vehicle.AddGas(gasToAdd);
 
-    //    //act
-          //Vehicle.Drive(ableToDrive);
+            //act
+            var status = vehicle.Drive(milesToDrive);
 
-    //    //assert
-
-          Vehicle.ableToDrive.Should().Be(miles, gasUsed, GasRemaining, MilesRemaining, TotalMilesPerTank );
+            //assert
+            status.Should().Be(expectedStatus);
         }
 
-    //[Theory]
-    //    [InlineData("MysteryParamValue")]
-    //    public void DrivePositiveTests(params object[] yourParamsHere)
-    //    {
-    //        //arrange
-    //        throw new NotImplementedException();
-    //        //act
+        //[Theory]
+        //    [InlineData("MysteryParamValue")]
+        //    public void DrivePositiveTests(params object[] yourParamsHere)
+        //    {
+        //        //arrange
+        //        throw new NotImplementedException();
+        //        //act
 
-    //        //assert
+        //        //assert
 
-    //    }
+        //    }
 
-    //    //Verify that attempting to change a flat tire using
-    //    //ChangeTireAsync will throw a NoTireToChangeException
-    //    //if there is no flat tire.
-    //    [Fact]
+        //    //Verify that attempting to change a flat tire using
+        //    //ChangeTireAsync will throw a NoTireToChangeException
+        //    //if there is no flat tire.
+        //    [Fact]
         public async Task ChangeTireWithoutFlatTest()
         {
             //arrange
@@ -194,7 +194,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             //act
 
             //assert
-            Action act = () => Vehicle.ChnageTireAsync();
+            Action act = () => vehicle.ChangeTireAsync();
             act.Should().Throw<NoTireToChangeException>().WithMessage("No Flat tire to Change.");
         }
 
